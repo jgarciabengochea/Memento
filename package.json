@@ -1,0 +1,29 @@
+{
+  "name": "mvp",
+  "version": "1.0.0",
+  "description": "A flashcard chrome browser extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgarciabengochea/mvp.git"
+  },
+  "author": "Javi Garcia-Bengochea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgarciabengochea/mvp/issues"
+  },
+  "homepage": "https://github.com/jgarciabengochea/mvp#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.20.2"
+  }
+}
