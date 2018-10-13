@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
   console.log('U GOT IT');
-  res.send();
+  res.send('Hello World!');
 });
 
 app.use('/', express.static(path.resolve(__dirname, 'public/index.html')));
