@@ -18,27 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Memento/Forget me not
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  A flashcard browser extension that allows users to effectively use idle time to learn anything they want!
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Memento allows users to download or create their own flashcard decks. This product is designed to maximize moments of idle time in the typical work day. These moments occur frequently throughout a typical work day whether it be before/between meetings, in the morning before you're officially 'on the clock', or whenever you feel there's 'not enough time' to do anything but maybe scroll around on your phone for a few minutes. With Memento there is always time to learn!
 
 ## Problem ##
   > Describe the problem your product solves.
+  You just finished a meeting. You're next meeting starts in the same conference room in 7 minutes. You want to do something productive but is there anything productive you can even do in 7 minutes? Yes! With memento even a few minutes is enough time to quickly open the browser extension and improve your knowledge. It's great for quickly studying up on work information or personal interests such as learning a new language.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  If there's anyone else like me in this great big world, when they are on their computer they always have a browser window open and they always have moments of idle time lasting 3-10 minutes. By integrating the product into the browser within seconds you can be in the app and learning something new or strengthening your memory of something old!
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "This app will make you want to learn." -Javi Garcia-Bengochea CEO, Founder, Great Guy in General 
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  It's easy! Download our app from the chrome web store log in and either download a deck provided by Quizlet or make your own! The possibilities are endless when you create your own deck. Name the deck and add pictures and text to your cards to increase the impression the card makes in your brain.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "Elephants never forget and now neither do I thanks to Memento!" - Kane Tanaka, Oldest Living Person
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Next time you think you're stuck with too much time to do nothing and too little time to do anything remeber you've always got a moment for Memento. See our quick and easy guide to getting started with your first deck at memento.com/getting-started/thisisnotarealguide.
