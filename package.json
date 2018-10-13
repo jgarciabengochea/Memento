@@ -4,6 +4,8 @@
   "description": "A flashcard chrome browser extension",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server/index.js",
+    "build:dev": "webpack --config webpack.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +19,9 @@
   },
   "homepage": "https://github.com/jgarciabengochea/mvp#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4"
   },
   "devDependencies": {
@@ -24,6 +29,9 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
-    "webpack": "^4.20.2"
+    "nodemon": "^1.18.4",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-merge": "^4.1.4"
   }
 }
