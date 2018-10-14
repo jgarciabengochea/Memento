@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home.jsx';
 import CreateDeckMenu from './CreateDeckMenu.jsx';
+import CreateCardMenu from './CreateCardMenu.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class App extends React.Component {
       currentModal: 'Home',
       modals: {
         Home: <Home />,
-        CreateDeck: <CreateDeckMenu />
+        CreateDeck: <CreateDeckMenu />,
+        CreateCard: <CreateCardMenu />
       }
     };
     this.handleChangeModal = this.handleChangeModal.bind(this);
