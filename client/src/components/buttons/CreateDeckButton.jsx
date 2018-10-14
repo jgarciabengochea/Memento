@@ -11,10 +11,10 @@ export default class CreateDeckButton extends React.Component {
       chrome.runtime.id,
       {
         target: 'background',
-        modal: modal
-      }, () => {
-        console.log('sent');
-    });
+        type: 'createDeck',
+        modal
+      }
+    );
   }
 
   render() {
