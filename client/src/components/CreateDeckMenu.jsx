@@ -13,8 +13,10 @@ export default class CreateDeckMenu extends React.Component {
     return (
       <div>
         <form>
-          <input id='deckName' type='text' name='deckName'>Name: </input>
-          <input id='deckDescription' type='text' name='deckDescription'>Description: </input>
+          Name:
+          <input id='deckName' type='text' name='deckName'/>
+          Description:
+          <input id='deckDescription' type='text' name='deckDescription'/>
           <button onClick={(e) => {e.preventDefault(); this.handleAddCardClick(e);}}>Done</button>
         </form>
       </div>
