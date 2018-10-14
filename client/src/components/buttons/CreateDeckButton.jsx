@@ -5,7 +5,9 @@ export default class CreateDeckButton extends React.Component {
     super(props);
 
   }
-
+  handleCreateDeckClick() {
+    
+  }
   render() {
     return (
       <div>

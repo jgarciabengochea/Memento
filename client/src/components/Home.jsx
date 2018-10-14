@@ -5,7 +5,9 @@ import CreateDeckButton from './buttons/CreateDeckButton.jsx';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      currentModal: 'home'
+    }
   }
 
   render() {
