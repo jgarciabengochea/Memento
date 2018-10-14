@@ -3,10 +3,22 @@ import React from 'react';
 export default class CreateDeckMenu extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      deckName: '',
+      deckDescription: ''
+    }
   }
   
-  handleDoneClick(e) {
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    }, () => {
+      console.log(this.state);
+    });
+  }
 
+  sendDeckDoneMessage() {
+    
   }
 
   render() {
@@ -14,10 +26,10 @@ export default class CreateDeckMenu extends React.Component {
       <div>
         <form>
           Name:
-          <input id='deckName' type='text' name='deckName'/>
+          <input id='deckName' type='text' name='deckName' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
           Description:
-          <input id='deckDescription' type='text' name='deckDescription'/>
-          <button onClick={(e) => {e.preventDefault(); this.handleAddCardClick(e);}}>Done</button>
+          <input id='deckDescription' type='text' name='deckDescription' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
+          <button onClick={() => {e.preventDefault(); this.sendDeckDoneMessage();}}>Done</button>
         </form>
       </div>
     );
