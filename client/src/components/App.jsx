@@ -9,10 +9,11 @@ export default class App extends React.Component {
     this.state = {
       currentModal: 'Home',
       modals: {
-        Home: <Home />,
-        CreateDeck: <CreateDeckMenu />,
-        CreateCard: <CreateCardMenu />
-      }
+        Home: Home,
+        CreateDeck: CreateDeckMenu,
+        CreateCard: CreateCardMenu
+      },
+      currentDeckEditing: {}
     };
     this.handleChangeModal = this.handleChangeModal.bind(this);
   }
@@ -23,16 +24,22 @@ export default class App extends React.Component {
 
   handleChangeModal(msg) {
     if (msg.target === 'App') {
-      console.log('received by app');
+      console.log(msg.deck);
       this.setState({
-        currentModal: msg.modal
+        currentModal: msg.modal,
+        currentDeckEditing: msg.deck || {}
       });
     }
   }
 
   render() {
-    let modal = this.state.modals[this.state.currentModal]
-    console.log(modal);
+    let props = {};
+    if (this.state.currentModal === 'CreateCard') {
+      props.deck = this.state.currentDeckEditing;
+      props.front = '',
+      props.back = ''
+    }
+    let modal = React.createElement(this.state.modals[this.state.currentModal], props)
     return (
       <div>
         {modal}
