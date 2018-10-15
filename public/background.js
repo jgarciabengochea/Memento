@@ -1,5 +1,15 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, senderResponse) => {
   if (request.target === 'background') {
+    
+    if (request.type === 'returnHome') {
+      chrome.runtime.sendMessage(
+        chrome.runtime.id, 
+        {
+          target: 'App', 
+          modal: request.modal
+        }
+      );
+    }
     // send to create deck modal
     if (request.type === 'createDeck') {
       chrome.runtime.sendMessage(
