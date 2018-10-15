@@ -1,5 +1,5 @@
 import React from 'react';
-import Deck from './../Models/Deck.jsx'
+import DeckModel from './../Models/DeckModel.jsx'
 
 export default class CreateDeckMenu extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class CreateDeckMenu extends React.Component {
   }
 
   sendDeckDoneMessage() {
-    let deck = new Deck(this.state.deckName, this.state.deckDescription);
+    let deck = new DeckModel(this.state.deckName, this.state.deckDescription);
     chrome.runtime.sendMessage(
       chrome.runtime.id,
       {

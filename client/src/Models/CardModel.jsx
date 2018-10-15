@@ -1,4 +1,4 @@
-export default class Card {
+export default class CardModel {
   constructor(front, back) {
     this.front = front;
     this.back = back;

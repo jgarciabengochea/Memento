@@ -1,4 +1,4 @@
-const { saveDeck, findOneDeck } = require('../database/dbHelpers.js');
+const { saveDeck, findOneDeck, findAllDecks } = require('../database/dbHelpers.js');
 
 const postDeck = (req, res) => {
   console.log(req.body);
@@ -6,11 +6,12 @@ const postDeck = (req, res) => {
 };
 
 const getOneDeck = (req, res) => {
-  res.send('u just got got one');
+  console.log(req.query.name);
+  findOneDeck(req.query.name, res);
 };
 
 const getAllDecks = (req, res) => {
-
+  findAllDecks(res);
 };
 
 module.exports = {
