@@ -2,7 +2,7 @@
   "name": "Memento",
   "version": "1.0",
   "description": "A flashcard app to optimize idle time.",
-  "permissions": [],
+  "permissions": ["http://localhost/*"],
   "browser_action": {
     "default_popup": "popup.html"
   },

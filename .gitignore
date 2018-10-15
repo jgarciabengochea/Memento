@@ -36,3 +36,4 @@ bower_components/
 
 # Environment variables
 .env
+infrastructure/env.sh
