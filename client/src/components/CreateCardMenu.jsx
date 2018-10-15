@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './../Models/Card.jsx';
+import axios from 'axios';
 
 export default class CreateCardMenu extends React.Component {
   constructor(props) {
@@ -15,20 +16,38 @@ export default class CreateCardMenu extends React.Component {
       [e.target.name]: e.target.value
     });
   }
-
-  onCardCompletion() {
+  
+  addCardToDeck() {
     let card = new Card(this.state.cardFront, this.state.cardBack);
     this.props.deck.cards.push(card);
+  }
+  
+  sendChromeMessage(target, type, modal, deck) {
     chrome.runtime.sendMessage(
       chrome.runtime.id,
       {
-        target: 'background',
-        type: 'cardDone',
-        deck: this.props.deck,
-        modal: 'CreateCard'
+        target,
+        type,
+        modal,
+        deck
       }
     );
+  }
+
+  onCardCompletion() {
+    this.addCardToDeck();
+    this.sendChromeMessage('background', 'cardDone', 'CreateCard', this.props.deck);
     document.getElementById('createCard').reset();
+  }
+
+  onSaveDeck() {
+    if (this.state.cardFront && this.state.cardBack) {
+      this.addCardToDeck();
+    }
+    axios.post('http://192.168.1.93:3000/momento/decks', this.props.deck)
+      .then(() => console.log('POSTED PLEASE'))
+      .catch(err => console.error(err));
+    this.sendChromeMessage('background', 'returnHome', 'Home');
   }
 
   render() {
@@ -39,7 +58,9 @@ export default class CreateCardMenu extends React.Component {
           <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
           Back:
           <input id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
-          <button onClick={(e) => {e.preventDefault(); this.onCardCompletion();}}>Done</button>
+          <button onClick={(e) => {e.preventDefault(); this.onCardCompletion();}}>Add Card To Deck</button>
+          <button onClick={(e) => {e.preventDefault(); this.onSaveDeck()}}>Save Deck!*</button>
+          <p>*Unifinshed cards will not be saved to the deck.</p>
         </form>
       </div>
     );
