@@ -27,7 +27,26 @@ chrome.runtime.onMessage.addListener((request, sender, senderResponse) => {
         {
           target: 'App', 
           modal: request.modal, 
-          deck: request.deck
+          deckEditing: request.deck
+        }
+      );
+    }
+    if (request.type === 'viewDecks') {
+      chrome.runtime.sendMessage(
+        chrome.runtime.id, 
+        {
+          target: 'App', 
+          modal: request.modal
+        }
+      );
+    }
+    if (request.type === 'startQuiz') {
+      chrome.runtime.sendMessage(
+        chrome.runtime.id, 
+        {
+          target: 'App', 
+          modal: request.modal,
+          quizDeck: request.deck
         }
       );
     }

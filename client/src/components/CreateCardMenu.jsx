@@ -1,13 +1,13 @@
 import React from 'react';
-import Card from './../Models/Card.jsx';
+import CardModel from '../Models/CardModel.jsx';
 import axios from 'axios';
 
 export default class CreateCardMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardFront: this.props.front || '',
-      cardBack: this.props.back || ''
+      cardFront: '',
+      cardBack: ''
     }
   }
   
@@ -18,7 +18,7 @@ export default class CreateCardMenu extends React.Component {
   }
   
   addCardToDeck() {
-    let card = new Card(this.state.cardFront, this.state.cardBack);
+    let card = new CardModel(this.state.cardFront, this.state.cardBack);
     this.props.deck.cards.push(card);
   }
   

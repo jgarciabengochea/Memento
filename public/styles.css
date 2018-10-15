@@ -1,4 +1,18 @@
 #root {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
+}
+
+.deck {
+  height: 50px;
+  width: 50px;
+  background-color: aquamarine;
+}
+
+.deck-name {
+  font-weight: 700;
+}
+
+.deck-description {
+  font-size: 10px;
 }

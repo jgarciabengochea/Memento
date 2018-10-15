@@ -1,11 +1,26 @@
 import React from 'react';
-const StartQuizButton = (props) => {
+export default class StartQuizButton extends React.Component { 
+  constructor(props) {
+    super(props);
+  }
+  
+  handleStartQuizClick() {
+    chrome.runtime.sendMessage(
+      chrome.runtime.id,
+      {
+        target: 'background',
+        type: 'startQuiz',
+        deck: this.props.deck,
+        modal: 'QuizDisplay'
+      }
+    );
+  }
 
-  return (
-    <div>
-      <button>Start Remebering!</button>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <button onClick={() => this.handleStartQuizClick()}>Start Remebering!</button>
+      </div>
+    );
+  }
 }
-
-export default StartQuizButton;
