@@ -21,7 +21,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <div id="home">
-        MOMENTO
+        MEMENTO
         <div>
           <StartQuizButton deck={this.state.currentQuizDeck}/>
           <select onChange={(e) => {this.handleDeckSelection(e)}}>

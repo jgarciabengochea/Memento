@@ -32,8 +32,9 @@ export default class App extends React.Component {
   }
   
   getDecks() {
-    axios.get('http://192.168.1.93:3000/momento/decks')
+    axios.get('http://localhost:3000/momento/decks')
     .then((response) => {
+      console.log(responose.data);
       this.setState({ 
         decks: response.data,
         currentQuizDeck: response.data[0]
