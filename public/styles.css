@@ -80,7 +80,7 @@
 
 .deck {
   display: grid;
-  grid-template-rows: 20% 80%;
+  grid-template-rows: 1fr 3fr 1fr;
   height: 90px;
   width: 90px;
   background-color: #FFFFFF;

@@ -5,7 +5,6 @@ import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
 export default class DecksMenu extends React.Component {
   constructor(props) {
     super(props);
-    // might convert to stateless functional and pass decks directly
     this.state = {
     }
   }

@@ -65,13 +65,13 @@ export default class CreateCardMenu extends React.Component {
               <div>
                 Front:
               </div>
-              <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
+              <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
             </div>
             <div>
               <div>
                 Back:
               </div>
-              <textarea id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
+              <textarea id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
             </div>
           </div>
         </form>

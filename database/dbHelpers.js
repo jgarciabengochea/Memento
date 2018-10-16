@@ -33,12 +33,16 @@ const updateDeck = (name, cards, cb) => {
 };
 
 const deleteDeck = (name, cb) => {
-
+  Deck.deleteOne({ name })
+    .exec()
+    .then(() => cb.status(204).send())
+    .catch(err => cb.status(503).send(err));
 };
 
 module.exports = {
   saveDeck,
   findOneDeck,
   findAllDecks,
-  updateDeck
+  updateDeck,
+  deleteDeck
 };

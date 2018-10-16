@@ -61,7 +61,7 @@ export default class App extends React.Component {
             currentQuizDeck: msg.quizDeck || this.state.currentQuizDeck
           }, 
           () => {
-            if (this.state.currentModal === 'Home') {
+            if (this.state.currentModal === 'Home' || this.state.currentModal === 'DecksMenu') {
               this.getDecks();
             }
           }
