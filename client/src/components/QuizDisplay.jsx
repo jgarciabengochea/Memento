@@ -4,12 +4,19 @@ import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
 import axios from 'axios';
 import { LOCAL_IP } from './../../../config.js';
 
+const sortCardsByBin  = (cards) => {
+  cards.sort((a, b) => (a.bin - b.bin));
+  console.log(cards);
+  return cards;
+};
+
 export default class QuizDisplay extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       deck: this.props.deck,
-      cards: this.props.deck.cards,
+      cards: sortCardsByBin(this.props.deck.cards),
       currentCard: this.props.deck.cards[0],
       showingFront: true,
       currentCardIndex: 0,
@@ -54,7 +61,7 @@ export default class QuizDisplay extends React.Component {
     if (correct) {
       answer = 'correct';
       this.state.currentCard.correct += 1;
-      if (this.state.currentCard.bin < 5) {
+      if (this.state.currentCard.bin < 4) {
         this.state.currentCard.bin += 1;
       }
     } else if (!correct) {
