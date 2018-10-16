@@ -50,5 +50,16 @@ chrome.runtime.onMessage.addListener((request, sender, senderResponse) => {
         }
       );
     }
+    if (request.type === 'results') {
+      chrome.runtime.sendMessage(
+        chrome.runtime.id, 
+        {
+          target: 'App', 
+          type: 'results',
+          modal: request.modal,
+          results: request.results
+        }
+      );
+    }
   }
 });

@@ -11,11 +11,19 @@ export default class Home extends React.Component {
     }
   }
   
+  componentDidUpdate(prevProps) {
+    if (this.props.quizDeck !== prevProps.quizDeck) {
+      this.setState({
+        currentQuizDeck: this.props.quizDeck
+      });
+    }
+  }
+
   handleDeckSelection(e) {
     let decks = this.props.decks;
     this.setState({
       currentQuizDeck: decks[e.target.value]
-    }, () => console.log(this.state.currentQuizDeck));
+    });
   }
 
   render() {
@@ -23,15 +31,18 @@ export default class Home extends React.Component {
       <div id="home">
         MEMENTO
         <div>
-          <StartQuizButton deck={this.state.currentQuizDeck}/>
+          Deck: 
           <select onChange={(e) => {this.handleDeckSelection(e)}}>
             {this.props.decks.map((deck, i) => {
               return <option key={deck.name} value={i}>{deck.name}</option>
             })}
           </select>
         </div>
-        <ViewDeckButton />
-        <CreateDeckButton />
+        <div className='button-container'>
+          <StartQuizButton deck={this.state.currentQuizDeck}/>
+          <ViewDeckButton />
+          <CreateDeckButton />
+        </div>
       </div>
     );
   }

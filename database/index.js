@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DB_HOST = process.env.DB_HOST;
+const DB_HOST = process.env.DB_HOST || 'localhost';
 mongoose.connect(`mongodb://${DB_HOST}:27017/mvp`);
 
 const db = mongoose.connection;

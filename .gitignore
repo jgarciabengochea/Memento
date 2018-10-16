@@ -36,4 +36,9 @@ bower_components/
 
 # Environment variables
 .env
+
+
 infrastructure/
+infrastructure/.terraform
+
+config.js

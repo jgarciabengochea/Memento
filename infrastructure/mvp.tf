@@ -65,12 +65,12 @@ resource "aws_instance" "mvp-server" {
       "sudo yum install git -y",
       "curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -",
       "sudo yum -y install nodejs",
-      "git clone https://github.com/jgarciabengochea/mvp.git",
-      "source /home/ec2-user/env.sh",
-      "cd mvp/",
-      "sudo npm install -g forever",
-      "sudo npm install",
-      "forever start server/index.js"
+      # "git clone https://github.com/jgarciabengochea/mvp.git",
+      # "source /home/ec2-user/env.sh",
+      # "cd mvp/",
+      # "sudo npm install -g forever",
+      # "sudo npm install",
+      # "forever start server/index.js"
     ]
   }
   connection {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class CreateDeckButton extends React.Component {
+export default class ReturnHomeButton extends React.Component {
   constructor(props) {
     super(props);
   
@@ -11,7 +11,7 @@ export default class CreateDeckButton extends React.Component {
       chrome.runtime.id,
       {
         target: 'background',
-        type: 'viewDecks',
+        type: 'returnHome',
         modal
       }
     );
@@ -20,7 +20,7 @@ export default class CreateDeckButton extends React.Component {
   render() {
     return (
       <div>
-        <button className='button' onClick={() => this.sendChangeModalMessage('DecksMenu')}>View Decks!</button>
+        <button className='button' onClick={() => this.sendChangeModalMessage('Home')}>Return to Home Page</button>
       </div>
     );
   }
