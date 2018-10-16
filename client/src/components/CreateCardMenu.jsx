@@ -60,20 +60,28 @@ export default class CreateCardMenu extends React.Component {
     return (
       <div className='continer'>
         <form id="createCard">
-          <div>
-            Front:
-            <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
+          <div className='container create-card'>
+            <div>
+              <div>
+                Front:
+              </div>
+              <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
+            </div>
+            <div>
+              <div>
+                Back:
+              </div>
+              <textarea id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
+            </div>
           </div>
-          <div>
-            Back:
-            <input id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
+        </form>
+        <div>
+          <div className='button-container'>
+            <button className='button' onClick={(e) => {e.preventDefault(); this.onSaveDeck()}}>Save Deck!*</button>
+            <button className='button' onClick={(e) => {e.preventDefault(); this.onCardCompletion();}}>Add Card To Deck</button>
+            <ReturnHomeButton />
           </div>
           <p>*Unifinshed cards will not be saved to the deck.</p>
-        </form>
-        <div className='button-container'>
-          <button className='button' onClick={(e) => {e.preventDefault(); this.onSaveDeck()}}>Save Deck!*</button>
-          <button className='button' onClick={(e) => {e.preventDefault(); this.onCardCompletion();}}>Add Card To Deck</button>
-          <ReturnHomeButton />
         </div>
       </div>
     );

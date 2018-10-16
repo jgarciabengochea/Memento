@@ -28,15 +28,19 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div id="home">
-        MEMENTO
-        <div>
-          Deck: 
-          <select onChange={(e) => {this.handleDeckSelection(e)}}>
-            {this.props.decks.map((deck, i) => {
-              return <option key={deck.name} value={i}>{deck.name}</option>
-            })}
-          </select>
+      <div id="home" className='container'>
+        <div className='container'>
+          <div id='title'>
+            MEMENTO
+          </div>
+          <div>
+            Deck: 
+            <select onChange={(e) => {this.handleDeckSelection(e)}}>
+              {this.props.decks.map((deck, i) => {
+                return <option key={deck.name} value={i}>{deck.name}</option>
+              })}
+            </select>
+          </div>
         </div>
         <div className='button-container'>
           <StartQuizButton deck={this.state.currentQuizDeck}/>

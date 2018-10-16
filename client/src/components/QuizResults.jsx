@@ -11,8 +11,10 @@ export default class QuizResults extends React.Component {
 
   render() {
     return (
-      <div>
-        Results
+      <div className='results-container'>
+        <h1 className='results-title'>
+          Results
+        </h1>
         <div>
           Correct: {this.props.results.correct}
         </div>
