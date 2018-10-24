@@ -31,8 +31,8 @@ export default class Deck extends React.Component {
       <div className='deck'>
         <div className='deck-name'>{this.props.deck.name}</div>
         <div className='deck-description'>{this.props.deck.description}</div>
-        <div>
-          <img onClick={() => this.handleDeleteDeck(this.props.deck.name)} src='../lib/trash.png' alt='settings icon'/>
+        <div onClick={() => this.handleDeleteDeck(this.props.deck.name)}>
+          <img src='../lib/trash.png' alt='settings icon'/>
         </div>
       </div>
     );
