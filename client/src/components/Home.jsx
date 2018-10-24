@@ -11,6 +11,7 @@ export default class Home extends React.Component {
     }
   }
   
+
   componentDidUpdate(prevProps) {
     if (this.props.quizDeck !== prevProps.quizDeck) {
       this.setState({

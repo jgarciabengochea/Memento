@@ -8,6 +8,7 @@ import QuizResults from './QuizResults.jsx'
 import axios from 'axios';
 import { LOCAL_IP } from './../../../config.js';
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,7 @@ export default class App extends React.Component {
       currentQuizDeck: {},
       currentDeckEditing: {},
       results: {}
+
     };
     this.handleChangeModal = this.handleChangeModal.bind(this);
     this.getDecks = this.getDecks.bind(this);
@@ -41,6 +43,7 @@ export default class App extends React.Component {
       this.setState({ 
         decks: response.data,
         currentQuizDeck: response.data[0],
+
       });
     })
     .catch(err => console.error(err));
@@ -67,6 +70,7 @@ export default class App extends React.Component {
           }
         );
       }
+
     }
   }
 
@@ -84,6 +88,7 @@ export default class App extends React.Component {
     } else if (this.state.currentModal === 'QuizResults') {
       props.results = this.state.results;
       props.quizDeck = this.state.currentQuizDeck;
+
     }
     let modal = React.createElement(this.state.modals[this.state.currentModal], props)
     return (
