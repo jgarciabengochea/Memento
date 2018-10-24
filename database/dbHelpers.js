@@ -23,10 +23,26 @@ const findAllDecks = (cb) => {
     .exec()
     .then((decks) => cb.status(200).send(decks))
     .catch(err => cb.status(503).send(err));
-}
+};
+
+const updateDeck = (name, cards, cb) => {
+  Deck.update({ name }, { $set: { cards } })
+    .exec()
+    .then(() => cb.status(204).send())
+    .catch(err => cb.status(503).send(err));
+};
+
+const deleteDeck = (name, cb) => {
+  Deck.deleteOne({ name })
+    .exec()
+    .then(() => cb.status(204).send())
+    .catch(err => cb.status(503).send(err));
+};
 
 module.exports = {
   saveDeck,
   findOneDeck,
-  findAllDecks
+  findAllDecks,
+  updateDeck,
+  deleteDeck
 };

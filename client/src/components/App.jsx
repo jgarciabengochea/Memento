@@ -1,10 +1,13 @@
 import React from 'react';
 import Home from './Home.jsx';
-import CreateDeckMenu from './CreateDeckMenu.jsx';
-import CreateCardMenu from './CreateCardMenu.jsx';
+import CreateDeck from './CreateDeckMenu.jsx';
+import CreateCard from './CreateCardMenu.jsx';
 import DecksMenu from './DecksMenu.jsx';
 import QuizDisplay from './QuizDisplay.jsx';
+import QuizResults from './QuizResults.jsx'
 import axios from 'axios';
+import { LOCAL_IP } from './../../../config.js';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,14 +16,17 @@ export default class App extends React.Component {
       currentModal: 'Home',
       modals: {
         Home: Home,
-        CreateDeck: CreateDeckMenu,
-        CreateCard: CreateCardMenu,
+        CreateDeck,
+        CreateCard,
         DecksMenu,
-        QuizDisplay
+        QuizDisplay,
+        QuizResults
       },
       decks: [],
       currentQuizDeck: {},
-      currentDeckEditing: {}
+      currentDeckEditing: {},
+      results: {}
+
     };
     this.handleChangeModal = this.handleChangeModal.bind(this);
     this.getDecks = this.getDecks.bind(this);
@@ -32,12 +38,12 @@ export default class App extends React.Component {
   }
   
   getDecks() {
-    axios.get('http://localhost:3000/momento/decks')
+    axios.get(`http://${LOCAL_IP}:3000/momento/decks`)
     .then((response) => {
-      console.log(responose.data);
       this.setState({ 
         decks: response.data,
-        currentQuizDeck: response.data[0]
+        currentQuizDeck: response.data[0],
+
       });
     })
     .catch(err => console.error(err));
@@ -45,15 +51,26 @@ export default class App extends React.Component {
 
   handleChangeModal(msg) {
     if (msg.target === 'App') {
-      this.setState({
-        currentModal: msg.modal,
-        currentDeckEditing: msg.deck || {},
-        currentQuizDeck: msg.quizDeck || this.state.currentQuizDeck
-      }, () => {
-        if (this.state.currentModal === 'Home') {
-          this.getDecks();
-        }
-      });
+      if (msg.type === 'results') {
+        this.setState({
+            currentModal: msg.modal,
+            results: msg.results
+        });
+      } else {
+        this.setState(
+          {
+            currentModal: msg.modal,
+            currentDeckEditing: msg.deckEditing || {},
+            currentQuizDeck: msg.quizDeck || this.state.currentQuizDeck
+          }, 
+          () => {
+            if (this.state.currentModal === 'Home' || this.state.currentModal === 'DecksMenu') {
+              this.getDecks();
+            }
+          }
+        );
+      }
+
     }
   }
 
@@ -68,6 +85,10 @@ export default class App extends React.Component {
       props.deck = this.state.currentDeckEditing;
     } else if (this.state.currentModal === 'DecksMenu') {
       props.decks = this.state.decks;
+    } else if (this.state.currentModal === 'QuizResults') {
+      props.results = this.state.results;
+      props.quizDeck = this.state.currentQuizDeck;
+
     }
     let modal = React.createElement(this.state.modals[this.state.currentModal], props)
     return (

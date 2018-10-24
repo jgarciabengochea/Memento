@@ -20,7 +20,7 @@ export default class CreateDeckButton extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.sendChangeModalMessage('CreateDeck')}>Create a New Deck!</button>
+        <button className='button' onClick={() => this.sendChangeModalMessage('CreateDeck')}>Create a New Deck!</button>
       </div>
     );
   }

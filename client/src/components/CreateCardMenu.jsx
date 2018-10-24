@@ -1,6 +1,8 @@
 import React from 'react';
 import CardModel from '../Models/CardModel.jsx';
 import axios from 'axios';
+import { LOCAL_IP } from './../../../config.js';
+import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
 
 export default class CreateCardMenu extends React.Component {
   constructor(props) {
@@ -35,33 +37,52 @@ export default class CreateCardMenu extends React.Component {
   }
 
   onCardCompletion() {
-    this.addCardToDeck();
-    this.sendChromeMessage('background', 'cardDone', 'CreateCard', this.props.deck);
-    document.getElementById('createCard').reset();
+    if (this.state.cardFront && this.state.cardBack) {
+      this.addCardToDeck();
+      this.sendChromeMessage('background', 'cardDone', 'CreateCard', this.props.deck);
+      this.setState({
+        cardFront: '',
+        cardBack: ''
+      }, () => {document.getElementById('createCard').reset();});
+    }
   }
 
   onSaveDeck() {
     if (this.state.cardFront && this.state.cardBack) {
       this.addCardToDeck();
     }
-    axios.post('http://192.168.1.93:3000/momento/decks', this.props.deck)
-      .then(() => console.log('POSTED PLEASE'))
+    axios.post(`http://${LOCAL_IP}:3000/momento/decks`, this.props.deck)
+      .then(() => this.sendChromeMessage('background', 'returnHome', 'Home'))
       .catch(err => console.error(err));
-    this.sendChromeMessage('background', 'returnHome', 'Home');
   }
 
   render() {
     return (
-      <div>
+      <div className='continer'>
         <form id="createCard">
-          Front:
-          <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
-          Back:
-          <input id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}}/>
-          <button onClick={(e) => {e.preventDefault(); this.onCardCompletion();}}>Add Card To Deck</button>
-          <button onClick={(e) => {e.preventDefault(); this.onSaveDeck()}}>Save Deck!*</button>
-          <p>*Unifinshed cards will not be saved to the deck.</p>
+          <div className='container create-card'>
+            <div>
+              <div>
+                Front:
+              </div>
+              <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+            </div>
+            <div>
+              <div>
+                Back:
+              </div>
+              <textarea id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+            </div>
+          </div>
         </form>
+        <div>
+          <div className='button-container'>
+            <button className='button' onClick={(e) => {e.preventDefault(); this.onSaveDeck()}}>Save Deck!*</button>
+            <button className='button' onClick={(e) => {e.preventDefault(); this.onCardCompletion();}}>Add Card To Deck</button>
+            <ReturnHomeButton />
+          </div>
+          <p>*Unifinshed cards will not be saved to the deck.</p>
+        </div>
       </div>
     );
   }

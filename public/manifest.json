@@ -2,9 +2,14 @@
   "name": "Memento",
   "version": "1.0",
   "description": "A flashcard app to optimize idle time.",
-  "permissions": [],
+  "permissions": ["http://*/*"],
   "browser_action": {
     "default_popup": "popup.html"
+  },
+  "icons": { 
+    "16": "lib/memento16.png",
+    "48": "lib/memento48.png",
+    "128": "lib/memento128.png"
   },
   "background": {
     "scripts": ["background.js"],
