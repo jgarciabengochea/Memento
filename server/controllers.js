@@ -1,7 +1,6 @@
 const { saveDeck, findOneDeck, findAllDecks, updateDeck, deleteDeck } = require('../database/dbHelpers.js');
 
 const postDeck = (req, res) => {
-  console.log(req.body);
   saveDeck(req.body, res);
 };
 
@@ -16,11 +15,11 @@ const getAllDecks = (req, res) => {
 
 const updateWithNewCards = (req, res) => {
   updateDeck(req.body.name, req.body.cards, res);
-}
+};
 
 const handleDeleteDeck = (req, res) => {
   deleteDeck(req.body.name, res);
-}
+};
 
 module.exports = {
   postDeck,
