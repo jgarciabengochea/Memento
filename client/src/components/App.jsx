@@ -14,48 +14,50 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       currentModal: 'Home',
-      modals: {
-        Home: Home,
-        CreateDeck,
-        CreateCard,
-        DecksMenu,
-        QuizDisplay,
-        QuizResults
-      },
       decks: [],
       currentQuizDeck: {},
       currentDeckEditing: {},
       results: {}
-
+    };
+    this.modals = {
+      Home,
+      CreateDeck,
+      CreateCard,
+      DecksMenu,
+      QuizDisplay,
+      QuizResults
     };
     this.handleChangeModal = this.handleChangeModal.bind(this);
     this.getDecks = this.getDecks.bind(this);
   }
   
   componentDidMount() {
-    chrome.runtime.onMessage.addListener(this.handleChangeModal);
+    chrome.runtime.onMessage.addListener(this.handleChromeMessage);
     this.getDecks();
   }
   
   getDecks() {
     axios.get(`http://${LOCAL_IP}:3000/momento/decks`)
-    .then((response) => {
-      this.setState({ 
-        decks: response.data,
-        currentQuizDeck: response.data[0],
-
-      });
-    })
-    .catch(err => console.error(err));
+      .then((response) => {
+        this.setState({ 
+          decks: response.data,
+          currentQuizDeck: response.data[0],
+        });
+      })
+      .catch(err => console.error(err));
   }
 
-  handleChangeModal(msg) {
+  updateQuizResults({modal, results}) {
+    this.setState({
+      currentModal: modal,
+      results: results
+    });
+  }
+  // TODO: make function more readable
+  handleChromeMessage(msg) {
     if (msg.target === 'App') {
       if (msg.type === 'results') {
-        this.setState({
-            currentModal: msg.modal,
-            results: msg.results
-        });
+        this.updateQuizResults(msg);
       } else {
         this.setState(
           {
@@ -70,27 +72,30 @@ export default class App extends React.Component {
           }
         );
       }
-
     }
   }
 
-  render() {
+  setModalAndProps(currentModal) {
     let props = {};
-    if (this.state.currentModal === 'Home') {
+    if (currentModal === 'Home') {
       props.decks = this.state.decks;
       props.quizDeck = this.state.currentQuizDeck;
-    } else if (this.state.currentModal === 'QuizDisplay') {
+    } else if (currentModal === 'QuizDisplay') {
       props.deck = this.state.currentQuizDeck;
-    } else if (this.state.currentModal === 'CreateCard') {
+    } else if (currentModal === 'CreateCard') {
       props.deck = this.state.currentDeckEditing;
-    } else if (this.state.currentModal === 'DecksMenu') {
+    } else if (currentModal === 'DecksMenu') {
       props.decks = this.state.decks;
-    } else if (this.state.currentModal === 'QuizResults') {
+    } else if (currentModal === 'QuizResults') {
       props.results = this.state.results;
       props.quizDeck = this.state.currentQuizDeck;
-
     }
-    let modal = React.createElement(this.state.modals[this.state.currentModal], props)
+    let modal = this.setState[currentModal];
+    return React.createElement(modal, props);
+  }
+
+  render() {
+    let modal = this.setModalAndProps(this.state.currentModal);
     return (
       <div>
         {modal}
