@@ -27,12 +27,13 @@ export default class App extends React.Component {
       QuizDisplay,
       QuizResults
     };
-    this.handleChangeModal = this.handleChangeModal.bind(this);
+    this.setModalAndProps = this.setModalAndProps.bind(this);
+    this.updateQuizResults = this.updateQuizResults.bind(this);
     this.getDecks = this.getDecks.bind(this);
   }
   
   componentDidMount() {
-    chrome.runtime.onMessage.addListener(this.handleChromeMessage);
+    chrome.runtime.onMessage.addListener(this.handleChromeMessage.bind(this));
     this.getDecks();
   }
   
@@ -90,7 +91,7 @@ export default class App extends React.Component {
       props.results = this.state.results;
       props.quizDeck = this.state.currentQuizDeck;
     }
-    let modal = this.setState[currentModal];
+    let modal = this.modals[currentModal];
     return React.createElement(modal, props);
   }
 
