@@ -46,7 +46,10 @@ export default class CreateCardMenu extends React.Component {
       }, () => {document.getElementById('createCard').reset();});
     }
   }
-
+  
+  // TODO: 
+  // abstract return home message logic
+  // make universal message sending function b/w components through bg script
   onSaveDeck() {
     if (this.state.cardFront && this.state.cardBack) {
       this.addCardToDeck();
