@@ -1,5 +1,5 @@
 import React from 'react';
-import ReturnHomeButton from './buttons/ReturnHomeButton.jsx'
+import ReturnHomeButton from './../../buttons/ReturnHomeButton.jsx'
 export default class QuizResults extends React.Component {
   constructor(props) {
     super(props);

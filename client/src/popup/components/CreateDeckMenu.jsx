@@ -1,9 +1,9 @@
 import React from 'react';
-import DeckModel from './../Models/DeckModel.jsx';
-import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
-import CardModel from './../Models/CardModel.jsx';
+import DeckModel from './../../Models/DeckModel.jsx';
+import ReturnHomeButton from './../../buttons/ReturnHomeButton.jsx';
+import CardModel from './../../Models/CardModel.jsx';
 import axios from 'axios';
-import { LOCAL_IP } from './../../../config.js';
+import { LOCAL_IP } from './../../../../config.js';
 
 export default class CreateDeckMenu extends React.Component {
   constructor(props) {

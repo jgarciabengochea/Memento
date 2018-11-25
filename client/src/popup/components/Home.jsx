@@ -1,7 +1,7 @@
 import React from 'react';
-import StartQuizButton from './buttons/StartQuizButton.jsx';
-import CreateDeckButton from './buttons/CreateDeckButton.jsx';
-import ViewDeckButton from './buttons/ViewDecksButton.jsx';
+import StartQuizButton from './../../buttons/StartQuizButton.jsx';
+import CreateDeckButton from './../../buttons/CreateDeckButton.jsx';
+import ViewDeckButton from './../../buttons/ViewDecksButton.jsx';
 
 export default class Home extends React.Component {
   constructor(props) {

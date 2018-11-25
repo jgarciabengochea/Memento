@@ -1,8 +1,8 @@
 import React from 'react';
-import CardModel from '../Models/CardModel.jsx';
+import CardModel from '../../Models/CardModel.jsx';
 import axios from 'axios';
-import { LOCAL_IP } from './../../../config.js';
-import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
+import { LOCAL_IP } from './../../../../config.js';
+import ReturnHomeButton from './../../buttons/ReturnHomeButton.jsx';
 
 export default class CreateCardMenu extends React.Component {
   constructor(props) {

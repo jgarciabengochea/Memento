@@ -2,20 +2,18 @@ import React from 'react';
 import Home from './Home.jsx';
 import CreateDeck from './CreateDeckMenu.jsx';
 import CreateCard from './CreateCardMenu.jsx';
-import DecksMenu from './DecksMenu.jsx';
 import QuizDisplay from './QuizDisplay.jsx';
 import QuizResults from './QuizResults.jsx'
-import axios from 'axios';
-import { LOCAL_IP } from './../../../config.js';
+import getDecks from './../../controllers/getDecks.js';
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentModal: 'Home',
+      modal: 'Home',
       decks: [],
-      currentQuizDeck: {},
+      quizDeck: {},
       currentDeckEditing: {},
       results: {}
     };
@@ -23,26 +21,25 @@ export default class App extends React.Component {
       Home,
       CreateDeck,
       CreateCard,
-      DecksMenu,
       QuizDisplay,
       QuizResults
     };
     this.setModalAndProps = this.setModalAndProps.bind(this);
     this.updateQuizResults = this.updateQuizResults.bind(this);
-    this.getDecks = this.getDecks.bind(this);
+    this.setDecksAndQuizDeck = this.setDecksAndQuizDeck.bind(this);
   }
   
   componentDidMount() {
     chrome.runtime.onMessage.addListener(this.handleChromeMessage.bind(this));
-    this.getDecks();
+    this.setDecksAndQuizDeck();
   }
   
-  getDecks() {
-    axios.get(`http://${LOCAL_IP}:3000/momento/decks`)
-      .then((response) => {
+  setDecksAndQuizDeck() {
+    getDecks()
+      .then(decks => {
         this.setState({ 
-          decks: response.data,
-          currentQuizDeck: response.data[0],
+          decks,
+          quizDeck: decks[0],
         });
       })
       .catch(err => console.error(err));
@@ -50,10 +47,11 @@ export default class App extends React.Component {
 
   updateQuizResults({modal, results}) {
     this.setState({
-      currentModal: modal,
+      modal: modal,
       results: results
     });
   }
+
   // TODO: make function more readable
   handleChromeMessage(msg) {
     if (msg.target === 'App') {
@@ -62,13 +60,13 @@ export default class App extends React.Component {
       } else {
         this.setState(
           {
-            currentModal: msg.modal,
+            modal: msg.modal,
             currentDeckEditing: msg.deckEditing || {},
-            currentQuizDeck: msg.quizDeck || this.state.currentQuizDeck
+            quizDeck: msg.quizDeck || this.state.quizDeck
           }, 
           () => {
-            if (this.state.currentModal === 'Home' || this.state.currentModal === 'DecksMenu') {
-              this.getDecks();
+            if (this.state.modal === 'Home') {
+              this.setDecksAndQuizDeck();
             }
           }
         );
@@ -76,27 +74,27 @@ export default class App extends React.Component {
     }
   }
 
-  setModalAndProps(currentModal) {
+  setModalAndProps(modalName) {
     let props = {};
-    if (currentModal === 'Home') {
+    if (modalName === 'Home') {
       props.decks = this.state.decks;
-      props.quizDeck = this.state.currentQuizDeck;
-    } else if (currentModal === 'QuizDisplay') {
-      props.deck = this.state.currentQuizDeck;
-    } else if (currentModal === 'CreateCard') {
+      props.quizDeck = this.state.quizDeck;
+    } else if (modalName === 'QuizDisplay') {
+      props.deck = this.state.quizDeck;
+    } else if (modalName === 'CreateCard') {
       props.deck = this.state.currentDeckEditing;
-    } else if (currentModal === 'DecksMenu') {
+    } else if (modalName === 'DecksMenu') {
       props.decks = this.state.decks;
-    } else if (currentModal === 'QuizResults') {
+    } else if (modalName === 'QuizResults') {
       props.results = this.state.results;
-      props.quizDeck = this.state.currentQuizDeck;
+      props.quizDeck = this.state.quizDeck;
     }
-    let modal = this.modals[currentModal];
+    let modal = this.modals[modalName];
     return React.createElement(modal, props);
   }
 
   render() {
-    let modal = this.setModalAndProps(this.state.currentModal);
+    let modal = this.setModalAndProps(this.state.modal);
     return (
       <div>
         {modal}

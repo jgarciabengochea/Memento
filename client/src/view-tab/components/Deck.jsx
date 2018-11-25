@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { LOCAL_IP } from './../../../config.js';
+import { LOCAL_IP } from './../../../../config.js';
 
 export default class Deck extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class Deck extends React.Component {
   handleDeleteDeck(name) {
     axios.delete(`http://${LOCAL_IP}:3000/momento/deck`, { data: { name }})
       .then(() => {
-        this.sendChangeModalMessage('DecksMenu');
+        this.props.setDecks();
       })
       .catch(err => console.error(err));
   }
