@@ -32,6 +32,13 @@ const updateDeck = (name, cards, cb) => {
     .catch(err => cb.status(503).send(err));
 };
 
+const updateDeckMetaData = (oldName, name, description) => new Promise((resolve, reject) => {
+  Deck.update({ name: oldName }, { $set: { name, description } })
+    .exec()
+    .then(resolve)
+    .catch(reject);
+})
+
 const deleteDeck = (name, cb) => {
   Deck.deleteOne({ name })
     .exec()
@@ -44,5 +51,6 @@ module.exports = {
   findOneDeck,
   findAllDecks,
   updateDeck,
+  updateDeckMetaData,
   deleteDeck
 };
