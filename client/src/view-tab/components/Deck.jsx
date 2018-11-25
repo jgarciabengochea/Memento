@@ -33,7 +33,7 @@ export default class Deck extends React.Component {
           <div>
             <div>edit</div>
             <div onClick={() => this.handleDeleteDeck(this.props.deck.name)}>
-              <img src='../lib/trash.png' alt='settings icon'/>
+              <img src='../lib/assets/trash.png' alt='settings icon'/>
             </div>
           </div>
         </div>

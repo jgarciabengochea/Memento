@@ -20,7 +20,7 @@ export default class CreateDeckButton extends React.Component {
   createTab(e) {
     e.preventDefault();
     console.log('Hello birb');
-    chrome.tabs.create({url: '../view-decks.html'});
+    chrome.tabs.create({url: '../../views/view-decks.html'});
   };
 
   render() {
