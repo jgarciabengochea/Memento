@@ -23,12 +23,10 @@ export default class DecksMenu extends React.Component {
 
   render() {
     return (
-      <div className='decks-menu'>
-        <div className='deck-container'>
-          {this.state.decks.map((deck) => {
-            return <Deck key={deck.name} deck={deck} setDecks={this.setDecks}/>;
-          })}
-        </div>
+      <div className='deck-menu'>
+        {this.state.decks.map((deck) => {
+          return <Deck key={deck.name} deck={deck} setDecks={this.setDecks}/>;
+        })}
       </div>
     );
   }
