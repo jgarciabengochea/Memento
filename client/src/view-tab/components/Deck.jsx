@@ -1,21 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { LOCAL_IP } from './../../../../config.js';
+import CardDrawer from './CardDrawer.jsx';
 
 export default class Deck extends React.Component {
   constructor(props) {
     super(props);
-  }
-  
-  sendChangeModalMessage(modal) {
-    chrome.runtime.sendMessage(
-      chrome.runtime.id,
-      {
-        target: 'background',
-        type: 'viewDecks',
-        modal
-      }
-    );
+    this.state = {
+      expanded: false
+    }
+    this.expandDeck = this.expandDeck.bind(this);
   }
 
   handleDeleteDeck(name) {
@@ -26,14 +20,24 @@ export default class Deck extends React.Component {
       .catch(err => console.error(err));
   }
 
+  expandDeck() {
+    this.setState({ expanded: !this.state.expanded})
+  }
+
   render() {
     return (
-      <div className='deck'>
-        <div className='deck-name'>{this.props.deck.name}</div>
-        <div className='deck-description'>{this.props.deck.description}</div>
-        <div onClick={() => this.handleDeleteDeck(this.props.deck.name)}>
-          <img src='../lib/trash.png' alt='settings icon'/>
+      <div className='deck-container'>
+        <div className='deck'>
+          <div className='deck-name' onClick={this.expandDeck}>{this.props.deck.name}</div>
+          <div className='deck-description'>{this.props.deck.description}</div>
+          <div>
+            <div>edit</div>
+            <div onClick={() => this.handleDeleteDeck(this.props.deck.name)}>
+              <img src='../lib/trash.png' alt='settings icon'/>
+            </div>
+          </div>
         </div>
+        {this.state.expanded ? <CardDrawer cards={this.props.deck.cards}/> : null}
       </div>
     );
   }
