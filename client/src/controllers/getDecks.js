@@ -6,7 +6,7 @@ const getDecks = () => new Promise((resolve, reject) => {
     .then((response) => {
       resolve(response.data);
     })
-    .catch(err => { reject(err) });
+    .catch(reject);
 });
 
 export default getDecks;
