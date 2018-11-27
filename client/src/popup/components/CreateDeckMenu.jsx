@@ -1,9 +1,9 @@
 import React from 'react';
-import DeckModel from './../Models/DeckModel.jsx';
-import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
-import CardModel from './../Models/CardModel.jsx';
+import DeckModel from './../../Models/DeckModel.jsx';
+import ReturnHomeButton from './../../buttons/ReturnHomeButton.jsx';
+import CardModel from './../../Models/CardModel.jsx';
 import axios from 'axios';
-import { LOCAL_IP } from './../../../config.js';
+import { LOCAL_IP } from './../../../../config.js';
 
 export default class CreateDeckMenu extends React.Component {
   constructor(props) {
@@ -19,7 +19,6 @@ export default class CreateDeckMenu extends React.Component {
   
   handleFiles(e) {
     let file = e.target.files[0];
-    console.log(file);
     if (file.type === 'text/csv') {
       let reader = new FileReader();
       reader.onload = () => {
@@ -83,12 +82,16 @@ export default class CreateDeckMenu extends React.Component {
         <form>
           <div className='container'>
             <div>
-              <div>Name:</div>
-              <input id='deckName' type='text' name='deckName' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+              <label>
+                Name:
+                <input id='deckName' type='text' name='deckName' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+              </label>
             </div>
             <div>
-              <div>Description:</div>
-              <input id='deckDescription' type='text' name='deckDescription' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+              <label>
+                Description:
+                <input id='deckDescription' type='text' name='deckDescription' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+              </label>
             </div>
           </div>
           <div className='button-container'>

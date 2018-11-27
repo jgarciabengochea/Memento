@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from './Card.jsx';
-import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
+import ReturnHomeButton from './../../buttons/ReturnHomeButton.jsx';
 import axios from 'axios';
-import { LOCAL_IP } from './../../../config.js';
+import { LOCAL_IP } from './../../../../config.js';
 
 const sortCardsByBin  = (cards) => {
   cards.sort((a, b) => (a.bin - b.bin));

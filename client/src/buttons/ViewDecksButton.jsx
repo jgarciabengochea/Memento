@@ -17,15 +17,16 @@ export default class CreateDeckButton extends React.Component {
     );
   }
   
-  createTab() {
+  createTab(e) {
+    e.preventDefault();
     console.log('Hello birb');
-    chrome.tabs.create({url: '../view-decks.html'});
+    chrome.tabs.create({url: '../../views/view-decks.html'});
   };
 
   render() {
     return (
       <div>
-        <button id='view' className='button' onClick={() => {this.createTab(); this.sendChangeModalMessage('DecksMenu')}}>View Decks!</button>
+        <button id='view' className='button' onClick={this.createTab}>View Decks!</button>
       </div>
     );
   }

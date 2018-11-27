@@ -1,8 +1,8 @@
 import React from 'react';
-import CardModel from '../Models/CardModel.jsx';
+import CardModel from '../../Models/CardModel.jsx';
 import axios from 'axios';
-import { LOCAL_IP } from './../../../config.js';
-import ReturnHomeButton from './buttons/ReturnHomeButton.jsx';
+import { LOCAL_IP } from './../../../../config.js';
+import ReturnHomeButton from './../../buttons/ReturnHomeButton.jsx';
 
 export default class CreateCardMenu extends React.Component {
   constructor(props) {
@@ -65,16 +65,16 @@ export default class CreateCardMenu extends React.Component {
         <form id="createCard">
           <div className='container create-card'>
             <div>
-              <div>
+              <label>
                 Front:
-              </div>
-              <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+                <input id='cardFront' type='text' name='cardFront' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+              </label>
             </div>
             <div>
-              <div>
+              <label>
                 Back:
-              </div>
-              <textarea id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+                <textarea id='cardBack' type='text' name='cardBack' onChange={(e) => {e.preventDefault(); this.handleInputChange(e)}} autoComplete='off'/>
+              </label>
             </div>
           </div>
         </form>

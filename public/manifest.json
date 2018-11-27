@@ -4,15 +4,15 @@
   "description": "A flashcard app to optimize idle time.",
   "permissions": ["http://*/*", "tabs"],
   "browser_action": {
-    "default_popup": "popup.html"
+    "default_popup": "views/popup.html"
   },
   "icons": { 
-    "16": "lib/memento16.png",
-    "48": "lib/memento48.png",
-    "128": "lib/memento128.png"
+    "16": "lib/assets/memento16.png",
+    "48": "lib/assets/memento48.png",
+    "128": "lib/assets/memento128.png"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["scripts/background.js"],
     "persistent": false
   },
   "manifest_version": 2
