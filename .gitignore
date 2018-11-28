@@ -44,3 +44,6 @@ infrastructure/.terraform/plugins/darwin_amd64/terraform-provider-aws_v1.40.0_x4
 
 # config 
 config.js
+
+#Press release 
+_PRESS-RELEASE.md
