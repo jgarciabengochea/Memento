@@ -38,10 +38,6 @@ bower_components/
 .env
 
 
-infrastructure/
-infrastructure/.terraform
-infrastructure/.terraform/plugins/darwin_amd64/terraform-provider-aws_v1.40.0_x4
-
 # config 
 config.js
 
