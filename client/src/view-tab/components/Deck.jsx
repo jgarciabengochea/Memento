@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { LOCAL_IP } from './../../../../config.js';
-import CardDrawer from './CardDrawer.jsx';
+import CardList from './CardList.jsx';
 import DeckForm from './DeckForm.jsx';
 
 export default class Deck extends React.Component {
@@ -45,7 +45,7 @@ export default class Deck extends React.Component {
           </div>
         </div>
         {this.state.editing ? <DeckForm setDecks={ this.props.setDecks } oldDeck={ this.props.deck } /> : null}
-        {this.state.expanded ? <CardDrawer cards={ this.props.deck.cards }/> : null}
+        {this.state.expanded ? <CardList cards={ this.props.deck.cards }/> : null}
       </div>
     );
   }
