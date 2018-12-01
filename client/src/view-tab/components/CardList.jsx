@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Card from './Card.jsx';
+import CardListEntry from './CardListEntry.jsx';
 
-export default class CardDrawer extends Component {
+export default class CardList extends Component {
   constructor(props) {
     super(props);
 
@@ -11,7 +11,7 @@ export default class CardDrawer extends Component {
     return (
       <div className='card-drawer'>
         {this.props.cards.map((card, i) => {
-          return <Card key={i} card={card}/>
+          return <CardListEntry key={i} card={card}/>
         })}
       </div>
     );
