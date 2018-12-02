@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jgarciabengochea/mvp.git"
+    "url": "git+https://github.com/jgarciabengochea/Memento.git"
   },
   "author": "Javi Garcia-Bengochea",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jgarciabengochea/mvp/issues"
+    "url": "https://github.com/jgarciabengochea/Memento/issues"
   },
   "homepage": "https://github.com/jgarciabengochea/mvp#readme",
   "dependencies": {
