@@ -49,6 +49,11 @@ export default class QuizDisplay extends React.Component {
       }
     );
   }
+  
+  // add function to re-index as cards are being quizzed
+  reIndexCurrentCard(card, index) {
+    card.index = index;
+  }
 
   handleFlipCard() {
     this.setState({
@@ -57,6 +62,7 @@ export default class QuizDisplay extends React.Component {
   }
 
   handleNextCard(index, correct) {
+    this.reIndexCurrentCard(this.state.currentCard, index);
     let answer;
     if (correct) {
       answer = 'correct';
