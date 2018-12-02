@@ -22,7 +22,7 @@ export default class CreateDeckMenu extends React.Component {
     if (file.type === 'text/csv') {
       let reader = new FileReader();
       reader.onload = () => {
-        let cards = reader.result.split('\n').map((line) => line.split(',')).map((card) => new CardModel(card[0], card[1]));
+        let cards = reader.result.split('\n').map((line) => line.split(',')).map((card, i) => new CardModel(card[0], card[1], i));
         this.setState({
           cardsFromFile: cards,
           fileUploaded: !this.state.fileUploaded
