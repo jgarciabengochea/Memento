@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cardSchema = new mongoose.Schema({
   front: String,
   back: String,
+  index: Number,
   bin: Number,
   correct: Number,
   incorrect: Number,
