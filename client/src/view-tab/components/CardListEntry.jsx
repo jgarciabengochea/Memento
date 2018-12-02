@@ -14,6 +14,7 @@ export default class CardListEntry extends Component {
     this.setState({ showingModal: !this.state.showingModal });
   }
 
+
   render() {
     return(
       <div className='card-container'>
@@ -32,6 +33,9 @@ export default class CardListEntry extends Component {
         <div onClick={this.toggleModal}>
           Try it out!
           {this.state.showingModal ? <CardDisplayModal card={this.props.card}/> : null}
+        </div>
+        <div>
+          <button>Edit</button>
         </div>
       </div>
     );
