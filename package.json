@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/jgarciabengochea/Memento/issues"
   },
-  "homepage": "https://github.com/jgarciabengochea/mvp#readme",
+  "homepage": "https://github.com/jgarciabengochea/Memento#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
