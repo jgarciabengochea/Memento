@@ -28,7 +28,12 @@ export default class CardDisplayModal extends Component {
     return (
       <div>
         <div style={modalStyle}>
-          {this.props.card.front}
+          <div className='card-front'>
+            {this.props.card.front}
+          </div>
+          <div className='card-back'>
+            {this.props.card.back}
+          </div>
         </div>
         <div style={backdropStyle}></div>
       </div>
