@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default class CardModel {
   constructor(front, back, index) {
     this.front = front;
@@ -6,5 +8,6 @@ export default class CardModel {
     this.bin = 0;
     this.correct = 0;
     this.incorrect = 0;
+    this.dateCreated = moment().format('MMMM Do YYYY');
   }
 }
