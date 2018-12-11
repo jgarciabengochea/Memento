@@ -21,7 +21,7 @@ export default class CreateCardMenu extends React.Component {
   
   addCardToDeck() {
     let index = this.props.deck.cards.length;
-    let card = new CardModel(this.state.cardFront, this.state.cardBack, index);
+    let card = new CardModel(this.state.cardFront, this.state.cardBack, index, this.props.deck.id);
     this.props.deck.cards.push(card);
   }
   
