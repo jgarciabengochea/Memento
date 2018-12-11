@@ -1,7 +1,8 @@
 import moment from 'moment';
 
 export default class CardModel {
-  constructor(front, back, index) {
+  constructor(front, back, index, deckId) {
+    this.deckId = deckId;
     this.id = '_' + Math.random().toString(36).substr(2, 9);
     this.front = front;
     this.back = back;
