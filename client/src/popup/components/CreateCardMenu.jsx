@@ -62,7 +62,7 @@ export default class CreateCardMenu extends React.Component {
 
   render() {
     return (
-      <div className='continer'>
+      <div className='container'>
         <form id="createCard">
           <div className='container create-card'>
             <div>
