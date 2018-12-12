@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// TODO: add support for new deck and card props
+
 const cardSchema = new mongoose.Schema({
   deckId: String,
   id: String,
