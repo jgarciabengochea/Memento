@@ -6,8 +6,8 @@ export default class DeckForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name:this.props.oldDeck.name,
-      description: this.props.oldDeck.description
+      name:this.props.oldDeck.name || '',
+      description: this.props.oldDeck.description || ''
     }
     this.handleInput = this.handleInput.bind(this);
     this.submitChanges = this.submitChanges.bind(this);
