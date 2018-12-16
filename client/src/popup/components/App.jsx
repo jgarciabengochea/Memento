@@ -5,13 +5,14 @@ import CreateCard from './CreateCardMenu.jsx';
 import QuizDisplay from './QuizDisplay.jsx';
 import QuizResults from './QuizResults.jsx'
 import getDecks from './../../controllers/getDecks.js';
+import Signup from './Signup.jsx';
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: 'Home',
+      modal: 'Signup',
       decks: [],
       quizDeck: {},
       currentDeckEditing: {},
@@ -19,6 +20,7 @@ export default class App extends React.Component {
     };
     this.modals = {
       Home,
+      Signup,
       CreateDeck,
       CreateCard,
       QuizDisplay,
@@ -42,7 +44,7 @@ export default class App extends React.Component {
           quizDeck: decks[0],
         });
       })
-      .catch(err => console.error(err));
+      .catch(console.error);
   }
 
   updateQuizResults({modal, results}) {
