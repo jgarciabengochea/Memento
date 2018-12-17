@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import sendChromeMessage from './../../controllers/sendChromeMessage.js';
 import { LOCAL_IP } from './../../../../config.js';
-
-export default class Signup extends Component {
+import sendChromeMessage from './../../controllers/sendChromeMessage.js';
+// TODO: validate username before sendng request
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
       username: '',
       password: ''
     };
     this.handleInput = this.handleInput.bind(this);
-    this.submitSignup = this.submitSignup.bind(this);
+    this.submitLogin = this.submitLogin.bind(this);
   }
 
   handleInput(e) {
@@ -24,10 +23,10 @@ export default class Signup extends Component {
     });
   }
 
-  submitSignup() {
-    let data = this.state;
-    // returns username on successful signup
-    axios.post(`http://${LOCAL_IP}:3000/momento/signup`, data)
+  submitLogin() {
+    let username = this.state.username;
+    let password = this.state.password;
+    axios.post(`http://${LOCAL_IP}:3000/momento/login`, { username, password })
       .then(({ data }) => {console.log(data); sendChromeMessage('background', 'returnHome', 'Home')})
       .catch(console.error);
   }
@@ -37,20 +36,9 @@ export default class Signup extends Component {
       <div>
         <div>
           <label>
-            E-mail
-            <input 
-              type='email' 
-              name='email' 
-              value={this.state.email} 
-              onChange={this.handleInput}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
             Username
             <input 
-              type='text' 
+              type='username' 
               name='username' 
               value={this.state.username} 
               onChange={this.handleInput}
@@ -68,7 +56,8 @@ export default class Signup extends Component {
           />
           </label>
         </div>
-        <button onClick={this.submitSignup}>Signup!</button>
+        <button onClick={this.submitLogin}>Login!</button>
+        <button onClick={() => {sendChromeMessage('background', 'signup', 'Signup')}}>Signup for an account!</button>
       </div>
     )
   }
