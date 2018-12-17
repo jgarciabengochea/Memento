@@ -1,7 +1,9 @@
-const Deck = require('./Models/Deck.js');
+const Deck = require('./schemas/Deck.js');
 
+// TODO: set response headers in controllers file
 const saveDeck = (deckObj, cb) => {
   let deck = new Deck(deckObj);
+  // refactor save to use promise
   deck.save((err) => {
       if (err) {
         cb.status(503).send(err);
@@ -45,6 +47,7 @@ const deleteDeck = (name, cb) => {
     .then(() => cb.status(204).send())
     .catch(err => cb.status(503).send(err));
 };
+
 
 module.exports = {
   saveDeck,
