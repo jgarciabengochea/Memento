@@ -4,15 +4,17 @@ import CreateDeck from './CreateDeckMenu.jsx';
 import CreateCard from './CreateCardMenu.jsx';
 import QuizDisplay from './QuizDisplay.jsx';
 import QuizResults from './QuizResults.jsx'
-import getDecks from './../../controllers/getDecks.js';
 import Signup from './Signup.jsx';
-
+import Login from './Login.jsx';
+import getDecks from './../../controllers/getDecks.js';
+import axios from 'axios';
+import { LOCAL_IP } from './../../../../config.js';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: 'Signup',
+      modal: 'Login',
       decks: [],
       quizDeck: {},
       currentDeckEditing: {},
@@ -21,6 +23,7 @@ export default class App extends React.Component {
     this.modals = {
       Home,
       Signup,
+      Login,
       CreateDeck,
       CreateCard,
       QuizDisplay,
@@ -33,9 +36,17 @@ export default class App extends React.Component {
   
   componentDidMount() {
     chrome.runtime.onMessage.addListener(this.handleChromeMessage.bind(this));
-    this.setDecksAndQuizDeck();
+    axios.get(`http://${LOCAL_IP}:3000/momento/`)
+      .then(() => {
+        this.setState({ modal: 'Home' }, () => {
+          this.setDecksAndQuizDeck();
+        })
+      })
+      .catch(() => {
+         console.log('Is this thing on?');
+      })
   }
-  
+
   setDecksAndQuizDeck() {
     getDecks()
       .then(decks => {
