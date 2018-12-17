@@ -19,7 +19,7 @@ export default class StartQuizButton extends React.Component {
   render() {
     return (
       <div>
-        <button className='button' onClick={() => this.handleStartQuizClick()}>Start Remebering!</button>
+        <button className='button' onClick={() => this.handleStartQuizClick()}>Start Remembering!</button>
       </div>
     );
   }
