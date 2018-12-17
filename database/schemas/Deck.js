@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const cardSchema = new mongoose.Schema({
+const CardSchema = new mongoose.Schema({
   deckId: String,
   id: String,
   front: String,
@@ -12,7 +12,7 @@ const cardSchema = new mongoose.Schema({
   dateCreated: String
 });
 
-const deckSchema = new mongoose.Schema({
+const DeckSchema = new mongoose.Schema({
   id: String,
   name: {
     type: String,
@@ -20,10 +20,10 @@ const deckSchema = new mongoose.Schema({
     unique: true
   },
   description: String,
-  cards: [cardSchema],
+  cards: [CardSchema],
   dateCreated: String
 });
 
-const Deck = mongoose.model('Deck', deckSchema);
+const Deck = mongoose.model('Deck', DeckSchema);
 
 module.exports = Deck;
