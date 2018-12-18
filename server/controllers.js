@@ -3,6 +3,7 @@ const User = require('./../database/schemas/User.js');
 const Session = require('./../database/schemas/Session.js');
 const util = require('./lib/hashUtils.js');
 
+// TODO: make this middleware function, add user prop to session
 const isLoggedIn = (req, res) => {
   Session.findOne({ hash: req.cookies.authToken })
     .exec()
@@ -18,7 +19,8 @@ const isLoggedIn = (req, res) => {
       }
       res.send();
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       res.status(403).send()
     })
 }
