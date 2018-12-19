@@ -1,33 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const { 
-  isLoggedIn,
-  postDeck,
-  getOneDeck,
-  getAllDecks, 
-  updateWithNewCards, 
-  updateDeckProps, 
-  handleDeleteDeck,
-  signupHandler,
-  loginHandler
-} = require('./controllers.js');
+const controller = require('./controllers.js');
 
-router.get('/', isLoggedIn)
+router.get('/', controller.isLoggedIn)
 
-router.post('/decks', postDeck);
+router.post('/decks', controller.postDeck);
 
-router.get('/decks', getAllDecks);
+router.get('/decks', controller.getAllDecks);
 
-router.get('/deck', getOneDeck);
+router.get('/deck', controller.getOneDeck);
 
-router.put('/deck', updateWithNewCards);
+router.put('/deck', controller.updateWithNewCards);
 
-router.put('/deck/edit', updateDeckProps);
+router.put('/deck/edit', controller.updateDeckProps);
 
-router.delete('/deck', handleDeleteDeck);
+router.delete('/deck', controller.handleDeleteDeck);
 
-router.post('/signup', signupHandler);
+router.post('/signup', controller.signupHandler);
 
-router.post('/login', loginHandler);
+router.post('/login', controller.loginHandler);
 
 module.exports = router;
